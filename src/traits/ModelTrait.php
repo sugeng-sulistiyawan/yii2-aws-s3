@@ -27,11 +27,11 @@ trait ModelTrait
      * @param UploadedFile $file Uploaded file to save
      * @param string $attribute Attribute name where the uploaded filename name will be saved
      * @param string $fileName Name which file will be saved. If empty will use the name from $file
-     * @param bool $updateExtension `true` to automatically append the extension to the file name. Default is `true`
+     * @param bool $autoExtension `true` to automatically append or replace the extension to the file name. Default is `true`
      * 
      * @return string|false Uploaded full path of filename on success or `false` in failure.
      */
-    public function saveUploadedFile(UploadedFile $file, $attribute, $fileName = '', $updateExtension = true)
+    public function saveUploadedFile(UploadedFile $file, $attribute, $fileName = '', $autoExtension = true)
     {
         if ($this->hasError && !$file instanceof UploadedFile) {
             return false;
@@ -40,8 +40,9 @@ trait ModelTrait
         if (empty($fileName)) {
             $fileName = $file->name;
         }
-        if ($updateExtension) {
-            $fileName .= '.' . $file->extension;
+        if ($autoExtension) {
+            $_file = pathinfo($fileName, PATHINFO_FILENAME);
+            $fileName = $_file . '.' . $file->extension;
         }
 
         $filePath = $this->getAttributePath($attribute) . $fileName;
@@ -127,16 +128,18 @@ trait ModelTrait
 
         return $this->getS3Component()->getPresignedUrl(
             $this->getAttributePath($attribute) . $this->{$attribute},
-            $this->getPresignedUrlDuration()
+            $this->getPresignedUrlDuration($attribute)
         );
     }
 
     /**
      * Retrieves the URL signature expiration.
      * 
+     * @param string $attribute Attribute name which holds the duration
+     * 
      * @return mixed URL expiration
      */
-    protected function getPresignedUrlDuration()
+    protected function getPresignedUrlDuration($attribute)
     {
         return '+30 minutes';
     }
