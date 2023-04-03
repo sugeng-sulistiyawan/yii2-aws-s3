@@ -436,7 +436,7 @@ protected function attributePaths()
 
 ##### getPresignedUrlDuration
 
-The default pressigned URL duration is set to "+1day", override this method and use your own expiration.
+The default pressigned URL duration is set to "+30 minutes", override this method and use your own expiration.
 
 ```php
 protected function getPresignedUrlDuration($attribute)
