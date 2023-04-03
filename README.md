@@ -373,14 +373,16 @@ Override the `attributePaths()` method to change the base path where the files w
 ```php
 $image = \yii\web\UploadedFile::getInstance($model, 'image');
 
-// Save image as image_thumb.png on S3 at //my_bucket/images/ path
-// $model->image will hold "image_thumb.png" after this call finish with success
-$model->saveUploadedFile($image, 'image', 'image_thumb.png');
-
 // Save image_thumb.* to S3 on //my_bucket/images/ path
 // The extension of the file will be determined by the submitted file type
 // This allows multiple file types upload (png,jpg,gif,...)
-$model->saveUploadedFile($image, 'image', 'image_thumb', true);
+// $model->image will hold "image_thumb.png" after this call finish with success
+$model->saveUploadedFile($image, 'image', 'image_thumb');
+
+// Save image_thumb.png to S3 on //my_bucket/images/ path
+// The extension of the file will be determined by the submitted file type
+// This force the extension to *.png
+$model->saveUploadedFile($image, 'image', 'image_thumb.png', false);
 
 // Get the URL to the image on S3
 $model->getFileUrl('image');
