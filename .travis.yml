@@ -4,11 +4,8 @@ php:
   - 7.4
   - 8.0
   - 8.1
+  - 8.2
 
 install:
-#  - composer global require "fxp/composer-asset-plugin:~1.4.4"
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer update --no-interaction
-
-#script:
-#  - phpunit

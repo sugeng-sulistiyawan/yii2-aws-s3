@@ -1,12 +1,6 @@
 {
 	"name": "diecoding/yii2-aws-s3",
 	"description": "Amazon S3 or Amazon Simple Storage Service component for Yii2",
-	"authors": [
-		{
-			"name": "Sugeng Sulistiyawan",
-			"email": "sugeng.sulistiyawan@gmail.com"
-		}
-	],
 	"type": "yii2-extension",
 	"keywords": [
 		"yii2",
@@ -21,6 +15,12 @@
 		"issues": "https://github.com/sugeng-sulistiyawan/yii2-aws-s3/issues",
 		"source": "https://github.com/sugeng-sulistiyawan/yii2-aws-s3"
 	},
+	"authors": [
+		{
+			"name": "Sugeng Sulistiyawan",
+			"email": "sugeng.sulistiyawan@gmail.com"
+		}
+	],
 	"require": {
 		"php": ">=7.4.0",
 		"yiisoft/yii2": "~2.0",

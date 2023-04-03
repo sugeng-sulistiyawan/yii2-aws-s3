@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the diecoding/yii2-toastr project.
+ * This file is part of the diecoding/yii2-aws-s3 project.
  * Copyright (c) Sugeng Sulistiyawan <sugeng.sulistiyawan@gmail.com>
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.

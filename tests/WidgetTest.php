@@ -8,7 +8,7 @@ namespace diecoding\aws\s3\tests;
 class WidgetTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * 
+     * Just Example
      */
     public function testView1_Controller1()
     {
