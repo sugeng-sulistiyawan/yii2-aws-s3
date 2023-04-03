@@ -8,7 +8,7 @@ php:
 install:
 #  - composer global require "fxp/composer-asset-plugin:~1.4.4"
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer update --prefer-dist --no-interaction
+  - composer update --no-interaction
 
 #script:
 #  - phpunit
