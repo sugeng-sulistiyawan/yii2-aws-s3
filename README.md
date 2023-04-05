@@ -2,13 +2,13 @@
 
 Amazon S3 or Amazon Simple Storage Service component for Yii2.
 
-[![Latest Stable Version](http://poser.pugx.org/diecoding/yii2-aws-s3/v)](https://packagist.org/packages/diecoding/yii2-aws-s3)
-[![Total Downloads](http://poser.pugx.org/diecoding/yii2-aws-s3/downloads)](https://packagist.org/packages/diecoding/yii2-aws-s3)
-[![Quality Score](https://img.shields.io/scrutinizer/g/sugeng-sulistiyawan/yii2-aws-s3.svg)](https://scrutinizer-ci.com/g/sugeng-sulistiyawan/yii2-aws-s3)
-[![Build Status](https://app.travis-ci.com/sugeng-sulistiyawan/yii2-aws-s3.svg?branch=master)](https://app.travis-ci.com/sugeng-sulistiyawan/yii2-aws-s3)
-[![Latest Unstable Version](http://poser.pugx.org/diecoding/yii2-aws-s3/v/unstable)](https://packagist.org/packages/diecoding/yii2-aws-s3)
-[![License](http://poser.pugx.org/diecoding/yii2-aws-s3/license)](https://packagist.org/packages/diecoding/yii2-aws-s3)
-[![PHP Version Require](http://poser.pugx.org/diecoding/yii2-aws-s3/require/php)](https://packagist.org/packages/diecoding/yii2-aws-s3)
+[![Latest Stable Version](https://img.shields.io/packagist/v/diecoding/yii2-aws-s3?label=stable)](https://packagist.org/packages/diecoding/yii2-aws-s3)
+[![Total Downloads](https://img.shields.io/packagist/dt/diecoding/yii2-aws-s3)](https://packagist.org/packages/diecoding/yii2-aws-s3)
+[![Latest Stable Release Date](https://img.shields.io/github/release-date/sugeng-sulistiyawan/yii2-aws-s3)](https://github.com/sugeng-sulistiyawan/yii2-aws-s3)
+[![Quality Score](https://img.shields.io/scrutinizer/quality/g/sugeng-sulistiyawan/yii2-aws-s3)](https://scrutinizer-ci.com/g/sugeng-sulistiyawan/yii2-aws-s3)
+[![Build Status](https://img.shields.io/travis/com/sugeng-sulistiyawan/yii2-aws-s3)](https://app.travis-ci.com/sugeng-sulistiyawan/yii2-aws-s3)
+[![License](https://img.shields.io/github/license/sugeng-sulistiyawan/yii2-aws-s3)](https://github.com/sugeng-sulistiyawan/yii2-aws-s3)
+[![PHP Version Require](https://img.shields.io/packagist/dependency-v/diecoding/yii2-aws-s3/php?color=6f73a6)](https://packagist.org/packages/diecoding/yii2-aws-s3)
 
 > Yii2 AWS S3 uses [SemVer](http://semver.org/).
 

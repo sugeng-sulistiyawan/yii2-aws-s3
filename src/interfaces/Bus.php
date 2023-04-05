@@ -12,7 +12,7 @@ use diecoding\aws\s3\interfaces\commands\Command;
 interface Bus
 {
     /**
-     * @param \diecoding\aws\s3\interfaces\commands\Command $command
+     * @param Command $command
      *
      * @return mixed
      */

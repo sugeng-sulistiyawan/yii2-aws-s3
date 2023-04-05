@@ -13,9 +13,9 @@ use diecoding\aws\s3\interfaces\handlers\Handler;
 interface HandlerResolver
 {
     /**
-     * @param \diecoding\aws\s3\interfaces\commands\Command $command
+     * @param Command $command
      *
-     * @return \diecoding\aws\s3\interfaces\handlers\Handler
+     * @return Handler
      */
     public function resolve(Command $command): Handler;
 

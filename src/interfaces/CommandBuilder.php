@@ -14,7 +14,7 @@ interface CommandBuilder
     /**
      * @param string $commandClass
      *
-     * @return \diecoding\aws\s3\interfaces\commands\Command
+     * @return Command
      */
     public function build(string $commandClass): Command;
 }

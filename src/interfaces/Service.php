@@ -12,7 +12,7 @@ use diecoding\aws\s3\interfaces\commands\Command;
 interface Service
 {
     /**
-     * @param \diecoding\aws\s3\interfaces\commands\Command $command
+     * @param Command $command
      *
      * @return mixed
      */
@@ -21,7 +21,7 @@ interface Service
     /**
      * @param string $commandClass
      *
-     * @return \diecoding\aws\s3\interfaces\commands\Command
+     * @return Command
      */
     public function create(string $commandClass): Command;
 }

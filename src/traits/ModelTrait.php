@@ -41,7 +41,7 @@ trait ModelTrait
             $fileName = $file->name;
         }
         if ($autoExtension) {
-            $_file = pathinfo($fileName, PATHINFO_FILENAME);
+            $_file = (string) pathinfo($fileName, PATHINFO_FILENAME);
             $fileName = $_file . '.' . $file->extension;
         }
 
@@ -139,9 +139,21 @@ trait ModelTrait
      * 
      * @return mixed URL expiration
      */
-    protected function getPresignedUrlDuration($attribute)
+    public function getPresignedUrlDuration($attribute)
     {
         return '+30 minutes';
+    }
+
+    /**
+     * List the paths on AWS S3 to each model file attribute.
+     * It must be a Key-Value array, where Key is the attribute name and Value is the base path for the file in S3.
+     * Override this method for saving each attribute in its own "folder".
+     * 
+     * @return array Key-Value of attributes and its paths.
+     */
+    public function attributePaths()
+    {
+        return [];
     }
 
     /**
@@ -152,7 +164,7 @@ trait ModelTrait
      * 
      * @return string The path where all file of that attribute should be stored. Returns empty string if the attribute isn't in the list.
      */
-    protected function getAttributePath($attribute)
+    public function getAttributePath($attribute)
     {
         $paths = $this->attributePaths();
         if (array_key_exists($attribute, $paths)) {
@@ -160,18 +172,6 @@ trait ModelTrait
         }
 
         return '';
-    }
-
-    /**
-     * List the paths on AWS S3 to each model file attribute.
-     * It must be a Key-Value array, where Key is the attribute name and Value is the base path for the file in S3.
-     * Override this method for saving each attribute in its own "folder".
-     * 
-     * @return array Key-Value of attributes and its paths.
-     */
-    protected function attributePaths()
-    {
-        return [];
     }
 
     /**
@@ -183,7 +183,7 @@ trait ModelTrait
      * 
      * @return bool whether this response is successful.
      */
-    protected function isSuccessResponseStatus($response)
+    public function isSuccessResponseStatus($response)
     {
         return !empty($response->get('@metadata')['statusCode']) &&
             $response->get('@metadata')['statusCode'] >= 200 &&
