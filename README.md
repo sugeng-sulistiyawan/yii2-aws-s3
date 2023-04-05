@@ -35,8 +35,7 @@ Amazon S3 or Amazon Simple Storage Service component for Yii2.
 
 ## Instalation
 
-Package is available on [Packagist](https://packagist.org/packages/diecoding/yii2-aws-s3), 
-you can install it using [Composer](https://getcomposer.org).
+Package is available on [Packagist](https://packagist.org/packages/diecoding/yii2-aws-s3), you can install it using [Composer](https://getcomposer.org).
 
 ```shell
 composer require diecoding/yii2-aws-s3 "^1.0"
