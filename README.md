@@ -328,7 +328,7 @@ allow to execute this command immediately: `$command->withSomething('some value'
 
 ### Model Trait
 
-Attach the Trait to the Model/ActiveRecord with some media attribute that will be saved in S3:
+Attach the Trait to the `Model/ActiveRecord` with some media attribute that will be saved in S3:
 
 ```php
 /**
