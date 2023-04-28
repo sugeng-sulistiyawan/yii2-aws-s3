@@ -31,7 +31,6 @@ Amazon S3 or Amazon Simple Storage Service component for Yii2.
         - [attributePaths](#attributepaths)
         - [getPresignedUrlDuration](#getpresignedurlduration)
         - [isSuccessResponseStatus](#issuccessresponsestatus)
-  - [License](#license)
 
 ## Instalation
 
@@ -43,7 +42,7 @@ composer require diecoding/yii2-aws-s3 "^1.0"
 
 or add to the require section of your `composer.json` file.
 
-```
+```shell
 "diecoding/yii2-aws-s3": "^1.0"
 ```
 
@@ -365,7 +364,7 @@ class Model extends \yii\db\ActiveRecord
 
 Override the `attributePaths()` method to change the base path where the files will be saved on AWS S3.
 
-* You can map a different path to each file attribute of your Model/ActiveRecord.
+- You can map a different path to each file attribute of your `Model/ActiveRecord`.
 
 #### Using Trait Methods
 
@@ -476,8 +475,6 @@ protected function isSuccessResponseStatus($response)
 }
 ```
 
-## License
+---
 
-Yii2 AWS S3 is licensed under the MIT License.
-
-See the [LICENSE](LICENSE) file for more information.
+Read more docs: https://sugengsulistiyawan.my.id/docs/opensource/yii2/aws-s3/
