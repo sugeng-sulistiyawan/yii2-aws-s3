@@ -70,7 +70,7 @@ class Service extends Component implements ServiceInterface
     /**
      * Executes a command.
      *
-     * @param \diecoding\aws\s3\interfaces\commands\Command $command
+     * @param Command $command
      *
      * @return mixed
      */
@@ -84,7 +84,7 @@ class Service extends Component implements ServiceInterface
      *
      * @param string $commandClass
      *
-     * @return \diecoding\aws\s3\interfaces\commands\Command
+     * @return Command
      */
     public function create(string $commandClass): Command
     {
@@ -94,7 +94,7 @@ class Service extends Component implements ServiceInterface
     /**
      * Returns command factory.
      *
-     * @return \diecoding\aws\s3\CommandFactory
+     * @return CommandFactory
      */
     public function commands(): CommandFactory
     {
@@ -104,7 +104,7 @@ class Service extends Component implements ServiceInterface
     /**
      * Returns handler resolver.
      *
-     * @return \diecoding\aws\s3\interfaces\HandlerResolverInterface
+     * @return HandlerResolverInterface
      */
     public function getResolver(): HandlerResolverInterface
     {
