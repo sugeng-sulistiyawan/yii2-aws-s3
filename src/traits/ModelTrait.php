@@ -9,11 +9,15 @@ use yii\web\UploadedFile;
  * Trait ModelTrait for Model
  * 
  * @package diecoding\aws\s3\traits
+ * 
+ * @link      https://sugengsulistiyawan.my.id/
+ * @author    Sugeng Sulistiyawan <sugeng.sulistiyawan@gmail.com>
+ * @copyright Copyright (c) 2023
  */
 trait ModelTrait
 {
     /**
-     * @return \diecoding\aws\s3\Service
+     * @return \diecoding\aws\s3\Service|mixed
      */
     public function getS3Component()
     {
@@ -21,7 +25,19 @@ trait ModelTrait
     }
 
     /**
-     * Save UploadedFile to AWS S3.
+     * List the paths on S3 to each model file attribute.
+     * It must be a Key-Value array, where Key is the attribute name and Value is the base path for the file in S3.
+     * Override this method for saving each attribute in its own "folder".
+     * 
+     * @return array Key-Value of attributes and its paths.
+     */
+    public function attributePaths()
+    {
+        return [];
+    }
+
+    /**
+     * Save UploadedFile toS3.
      * ! Important: This function uploads this model filename to keep consistency of the model.
      * 
      * @param UploadedFile $file Uploaded file to save
@@ -33,7 +49,7 @@ trait ModelTrait
      */
     public function saveUploadedFile(UploadedFile $file, $attribute, $fileName = '', $autoExtension = true)
     {
-        if ($this->hasError && !$file instanceof UploadedFile) {
+        if ($this->hasError) {
             return false;
         }
 
@@ -44,8 +60,7 @@ trait ModelTrait
             $_file = (string) pathinfo($fileName, PATHINFO_FILENAME);
             $fileName = $_file . '.' . $file->extension;
         }
-
-        $filePath = $this->getAttributePath($attribute) . $fileName;
+        $filePath = $this->getAttributePath($attribute) . '/' . $fileName;
 
         /** @var \Aws\ResultInterface $result */
         $result = $this->getS3Component()
@@ -68,7 +83,7 @@ trait ModelTrait
     }
 
     /**
-     * Delete model file attribute from AWS S3.
+     * Delete model file attribute from S3.
      * 
      * @param string $attribute Attribute name which holds the filename
      * 
@@ -81,7 +96,7 @@ trait ModelTrait
             return true;
         }
 
-        $filePath = $this->getAttributePath($attribute) . $this->{$attribute};
+        $filePath = $this->getAttributePath($attribute) . '/' . $this->{$attribute};
         $result = $this->getS3Component()
             ->commands()
             ->delete($filePath)
@@ -110,7 +125,7 @@ trait ModelTrait
             return '';
         }
 
-        return $this->getS3Component()->getUrl($this->getAttributePath($attribute) . $this->{$attribute});
+        return $this->getS3Component()->getUrl($this->getAttributePath($attribute) . '/' . $this->{$attribute});
     }
 
     /**
@@ -127,7 +142,7 @@ trait ModelTrait
         }
 
         return $this->getS3Component()->getPresignedUrl(
-            $this->getAttributePath($attribute) . $this->{$attribute},
+            $this->getAttributePath($attribute) . '/' . $this->{$attribute},
             $this->getPresignedUrlDuration($attribute)
         );
     }
@@ -141,23 +156,15 @@ trait ModelTrait
      */
     public function getPresignedUrlDuration($attribute)
     {
-        return '+30 minutes';
+        if (empty($this->{$attribute})) {
+            return 0;
+        }
+
+        return '+5 minutes';
     }
 
     /**
-     * List the paths on AWS S3 to each model file attribute.
-     * It must be a Key-Value array, where Key is the attribute name and Value is the base path for the file in S3.
-     * Override this method for saving each attribute in its own "folder".
-     * 
-     * @return array Key-Value of attributes and its paths.
-     */
-    public function attributePaths()
-    {
-        return [];
-    }
-
-    /**
-     * Retrieves the base path on AWS S3 for a given attribute.
+     * Retrieves the base path on S3 for a given attribute.
      * @see attributePaths()
      * 
      * @param string $attribute Attribute to get its path
@@ -175,11 +182,11 @@ trait ModelTrait
     }
 
     /**
-     * Check for valid status code from the AWS S3 response.
+     * Check for valid status code from the S3 response.
      * Success responses will be considered status codes is 2**.
      * Override function for custom validations.
      * 
-     * @param \Aws\ResultInterface $response AWS S3 response containing the status code
+     * @param \Aws\ResultInterface $response S3 response containing the status code
      * 
      * @return bool whether this response is successful.
      */

@@ -348,8 +348,7 @@ class Model extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc 
-     * @see https://github.com/sugeng-sulistiyawan/yii2-aws-s3/blob/main/src/traits/ModelTrait.php#L172
+     * @inheritdoc
      */
     protected function attributePaths()
     {
@@ -386,7 +385,7 @@ $model->saveUploadedFile($image, 'image', 'image_thumb.png', false);
 $model->getFileUrl('image');
 
 // Get the presigned URL to the image on S3
-// The default duration is "+30 minutes"
+// The default duration is "+5 Minutes"
 $model->getFilePresignedUrl('image');
 
 // Remove the file with named saved on the image attribute
@@ -436,12 +435,12 @@ protected function attributePaths()
 
 ##### getPresignedUrlDuration
 
-The default pressigned URL duration is set to "+30 minutes", override this method and use your own expiration.
+The default pressigned URL duration is set to "+5 Minutes", override this method and use your own expiration.
 
 ```php
 protected function getPresignedUrlDuration($attribute)
 {
-    return '+2 hours';
+    return '+2 Hours';
 }
 
 // or if you want to set the attribute differently
@@ -450,11 +449,11 @@ protected function getPresignedUrlDuration($attribute)
 {
     switch ($attribute) {
         case 'badge':
-            return '+2 hours';
+            return '+2 Hours';
             break;
         
         default:
-            return '+1 days';
+            return '+1 Days';
             break;
     }
 }

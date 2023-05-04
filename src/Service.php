@@ -4,7 +4,7 @@ namespace diecoding\aws\s3;
 
 use Aws\ResultInterface;
 use diecoding\aws\s3\interfaces\commands\Command;
-use diecoding\aws\s3\interfaces\HandlerResolver;
+use diecoding\aws\s3\interfaces\HandlerResolver as HandlerResolverInterface;
 use diecoding\aws\s3\interfaces\Service as ServiceInterface;
 use yii\base\Component;
 use yii\base\InvalidConfigException;
@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
 /**
  * Class Service
  *
- * @property HandlerResolver $resolver
+ * @property HandlerResolverInterface $resolver
  *
  * @method ResultInterface  get(string $filename)
  * @method ResultInterface  put(string $filename, $body)
@@ -51,15 +51,15 @@ class Service extends Component implements ServiceInterface
     public function init()
     {
         if (empty($this->clientConfig['credentials'])) {
-            throw new InvalidConfigException('Credentials are not set.');
+            throw new InvalidConfigException('The "clientConfig[credentials]" property must be set.');
         }
 
         if (empty($this->clientConfig['region'])) {
-            throw new InvalidConfigException('Region is not set.');
+            throw new InvalidConfigException('The "clientConfig[region]" property must be set.');
         }
 
         if (empty($this->defaultBucket)) {
-            throw new InvalidConfigException('Default bucket name is not set.');
+            throw new InvalidConfigException('The "defaultBucket" property must be set.');
         }
 
         foreach ($this->defaultComponentDefinitions() as $name => $definition) {
@@ -104,9 +104,9 @@ class Service extends Component implements ServiceInterface
     /**
      * Returns handler resolver.
      *
-     * @return \diecoding\aws\s3\interfaces\HandlerResolver
+     * @return \diecoding\aws\s3\interfaces\HandlerResolverInterface
      */
-    public function getResolver(): HandlerResolver
+    public function getResolver(): HandlerResolverInterface
     {
         return $this->getComponent('resolver');
     }
@@ -256,11 +256,11 @@ class Service extends Component implements ServiceInterface
     protected function defaultComponentDefinitions()
     {
         return [
-            'client' => ['class' => 'Aws\S3\S3Client'],
-            'resolver' => ['class' => 'diecoding\aws\s3\HandlerResolver'],
-            'bus' => ['class' => 'diecoding\aws\s3\Bus'],
-            'builder' => ['class' => 'diecoding\aws\s3\CommandBuilder'],
-            'factory' => ['class' => 'diecoding\aws\s3\CommandFactory'],
+            'client'   => ['class' => 'Aws\S3\S3Client'],
+            'resolver' => ['class' => 'diecoding\aws\s3\HandlerResolverInterface'],
+            'bus'      => ['class' => 'diecoding\aws\s3\Bus'],
+            'builder'  => ['class' => 'diecoding\aws\s3\CommandBuilder'],
+            'factory'  => ['class' => 'diecoding\aws\s3\CommandFactory'],
         ];
     }
 
